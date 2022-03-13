@@ -1,42 +1,36 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, FlatList} from 'react-native';
-import styles from './styles';
-import searchResults from '../../../assets/data/search';
-import Entypo from 'react-native-vector-icons/Entypo';
+import {View, TextInput, Text, FlatList, Pressable} from 'react-native';
+import styles from './styles.js';
 import {useNavigation} from '@react-navigation/native';
-import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import SuggestionRow from './SuggestionRow';
 
-const DestinationSearch = props => {
-  const [inputText, setInputText] = useState('');
+import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 
+const DestinationSearchScreen = props => {
   const navigation = useNavigation();
-
   return (
     <View style={styles.container}>
-      {/* Input components */}
-      <TextInput
-        style={styles.input}
+      <GooglePlacesAutocomplete
         placeholder="Where are you going?"
-        value={inputText}
-        onChangeText={setInputText}
-      />
-
-      {/* List of destinations */}
-      <FlatList
-        data={searchResults}
-        renderItem={({item}) => (
-          <Pressable
-            onPress={() => navigation.navigate('Guests')}
-            style={styles.row}>
-            <View style={styles.iconContainer}>
-              <Entypo name={'location-pin'} size={30} />
-            </View>
-            <Text style={styles.locationText}>{item.description}</Text>
-          </Pressable>
-        )}
+        onPress={(data, details = null) => {
+          // 'details' is provided when fetchDetails = true
+          console.log(data, details);
+          navigation.navigate('Guests');
+        }}
+        fetchDetails
+        styles={{
+          textInput: styles.textInput,
+        }}
+        query={{
+          key: 'AIzaSyCR5-GNpJMsRy0UFfhlMSJJ5LSL_l6XXWg',
+          language: 'en',
+          types: '(cities)',
+        }}
+        suppressDefaultStyles
+        renderRow={item => <SuggestionRow item={item} />}
       />
     </View>
   );
 };
 
-export default DestinationSearch;
+export default DestinationSearchScreen;

@@ -2,7 +2,9 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    margin: 20,
+    padding: 20,
+    height: '100%',
+    backgroundColor: 'white',
   },
   input: {
     fontSize: 20,
@@ -19,7 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e7e7e7',
     padding: 7,
     borderRadius: 10,
-    marginRight: 10,
+    marginRight: 15,
   },
   locationText: {},
 });
