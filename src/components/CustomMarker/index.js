@@ -3,19 +3,22 @@ import {View, Text} from 'react-native';
 import {Marker} from 'react-native-maps';
 
 const CustomMarker = props => {
-  const {coordinate, price} = props;
+  const {coordinate, price, onPress, isSelected} = props;
 
   return (
-    <Marker coordinate={coordinate}>
+    <Marker coordinate={coordinate} onPress={onPress}>
       <View
         style={{
-          backgroundColor: 'white',
+          backgroundColor: isSelected ? 'black' : 'white',
           padding: 5,
           borderRadius: 20,
           borderColor: 'gray',
           borderWidth: 1,
         }}>
-        <Text style={{fontWeight: 'bold'}}>${price}</Text>
+        <Text
+          style={{color: isSelected ? 'white' : 'black', fontWeight: 'bold'}}>
+          ${price}
+        </Text>
       </View>
     </Marker>
   );
