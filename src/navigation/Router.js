@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeTabNavigator from './HomeTabNavigator';
 import DestinationSearchScreen from '../screens/DestinationSearch';
 import GuestsScreen from '../screens/Guest';
-import PostScreen from '../screens/SearchResults';
+import PostScreen from '../screens/PostScreen';
 
 const Stack = createStackNavigator();
 
