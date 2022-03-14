@@ -6,9 +6,12 @@ import places from '../../../assets/data/feed';
 import CustomMarker from '../../components/CustomMarker';
 import PostCarouselItem from '../../components/PostCarouselItem';
 import {FlatList} from 'react-native-gesture-handler';
+import useWindowDimensions from 'react-native/Libraries/Utilities/useWindowDimensions';
 
 const SearchResultsMaps = props => {
   const [selectedPlaceId, setSelectPlaceId] = useState(null);
+  const width = useWindowDimensions().width;
+
   return (
     <View style={{width: '100%', height: '100%'}}>
       <MapView
@@ -36,6 +39,9 @@ const SearchResultsMaps = props => {
           renderItem={({item}) => <PostCarouselItem post={item} />}
           horizontal
           showsHorizontalScrollIndicator={false}
+          snapToInterval={width - 60}
+          snapToAlignment={'center'}
+          decelerationRate={'fast'}
         />
       </View>
     </View>
